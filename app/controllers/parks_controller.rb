@@ -1,6 +1,11 @@
 class ParksController < ApplicationController
 
   def index
+    @parks = Park.all
+    json_response(@parks)
+  end
+
+  def search
     if params[:name] && params[:national]
       render status: 406, json: {
           message: "oops! too many search options, try just one"
