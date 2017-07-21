@@ -1,7 +1,12 @@
 class StatesController < ApplicationController
 
   def index
-    @states = State.all
+    if params[:name]
+      stateName = params[:name]
+      @states = State.search(stateName)
+    else
+      @states = State.all
+    end
     json_response(@states)
   end
 

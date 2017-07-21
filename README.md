@@ -23,8 +23,8 @@ This small app provides a simple public API endpoint for looking up state and na
 | Method | URL | URL Params | Success Response | Error Response |
 |:---------:|-------|--------|
 | | _**STATES PATH**_ |||
-| GET | http://localhost:3000/ | N/A |
-| GET | http://localhost:3000/states | N/A |
+| GET | http://localhost:3000/ | Optional: name=[string] |
+| GET | http://localhost:3000/states | Optional: name=[string] |
 | POST | http://localhost:3000/states | N/A |
 | GET | http://localhost:3000/states/:id | id=[integer] |
 | PUT/PATCH | http://localhost:3000/states/:id | id=[integer] |
