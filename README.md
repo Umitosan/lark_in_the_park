@@ -11,7 +11,7 @@ This small app provides a simple public API endpoint for looking up state and na
 
 * As a user, I want to make a call to return a list of all state parks.
 * As a user, I want to make a call to return a list of all national parks.
-* As a user, I want to make a call to return a list of all state parks for a single state.
+* As a user, I want to make a call to return a list of all parks for a single state.
 * As a user, I want to make a call to return a random park.
 * As a user, I want to make a custom call that searches for parks using my input.
 * As a user, I want my calls to return on multiple pages so I don't receive too much data at once.
