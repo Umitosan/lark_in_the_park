@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe "get all states route", :type => :request do
+describe "the states path ", :type => :request do
+
   let!(:states) { FactoryGirl.create_list(:state, 10)}
 
   before { get '/states'}
@@ -12,5 +13,5 @@ describe "get all states route", :type => :request do
   it 'returns status code 200' do
     expect(response).to have_http_status(:success)
   end
-  
+
 end

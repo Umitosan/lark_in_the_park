@@ -33,7 +33,7 @@ class StatesController < ApplicationController
     stateName = @state.name
     if @state.destroy!
       render status: 202, json: {
-          message: "The state, #{stateName}, has been delete FOREVER!"
+          message: "The state, #{stateName}, has been deleted FOREVER!"
       }
     end
   end
