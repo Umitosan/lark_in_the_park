@@ -1,7 +1,8 @@
 # _Lark in the Park_
 
 #### By _**Dominic Brown**_
-#### (Independent project @ Epicodus - 7/21/17)
+
+_(Independent project @ Epicodus - 7/21/17)_
 
 ## Description
 
@@ -19,10 +20,22 @@ This small app provides a simple public API endpoint for looking up state and na
 
 ## API endpoints
 
-| URI | Verb | Description |
-|----------|-------|--------|
-||||
-
+| Method | URL | URL Params | Success Response | Error Response |
+|:---------:|-------|--------|
+| | _**STATES PATH**_ |||
+| GET | http://localhost:3000/ | N/A |
+| GET | http://localhost:3000/states | N/A |
+| POST | http://localhost:3000/states | N/A |
+| GET | http://localhost:3000/states/:id | id=[integer] |
+| PUT/PATCH | http://localhost:3000/states/:id | id=[integer] |
+| DELETE | http://localhost:3000/states/:id | id=[integer] |
+| | _**PARKS PATH**_ | |
+| GET | http://localhost:3000/states/:state_id/parks | state_id=[integer] |
+| POST | http://localhost:3000/states/:state_id/parks | state_id=[integer] |
+| GET | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
+| POST | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
+| PUT/PATCH | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
+| DELETE | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
 
 ## Prerequisites
 
@@ -48,9 +61,6 @@ Start the server
 * $`rails s`
 In your browser navigate to:
 * `localhost:3000`
-
-## Making API calls using the Postman app, examples:
-
 
 ## Known Bugs
 _N/A_
