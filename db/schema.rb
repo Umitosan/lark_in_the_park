@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20170721164000) do
 
   create_table "parks", force: :cascade do |t|
     t.string "name"
-    t.text "description"
-    t.boolean "state_park"
-    t.boolean "national_park"
+    t.string "description"
+    t.boolean "national_park", default: false
+    t.integer "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
