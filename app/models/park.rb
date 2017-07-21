@@ -5,4 +5,6 @@ class Park < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
 
+  scope :search, -> (name) { where("name like ?", "%#{name}%")}
+
 end

@@ -1,8 +1,12 @@
 class ParksController < ApplicationController
 
   def index
-    @parks = Park.all
-    # binding.pry
+    if params[:name]
+      parkName = params[:name]
+      @parks = Park.search(parkName)
+    else
+      @parks = Park.all
+    end
     json_response(@parks)
   end
 

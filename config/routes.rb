@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
   root to: "states#index"
 
-  resources :states do
-    resources :parks
-  end
+  resources :states
+  resources :parks
 
 end
