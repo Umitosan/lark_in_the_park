@@ -2,31 +2,50 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all
-    json_response(@parks)
+    json_response(@parks, :success)
   end
 
   def search
     if params[:name] && params[:national]
-      render status: 406, json: {
-          message: "oops! too many search options, try just one"
-      }
+      @parks_by_name = Park.search(params[:name])
+      @parks_by_type = Park.getNational(params[:national])
+      @unique_parks = (@parks_by_name & @parks_by_type)
+      json_response(@unique_parks)
     elsif params[:name]
-      @parks = Park.search(params[:name])
-      json_response(@parks)
+      @parks_by_name = Park.search(params[:name])
+      json_response(@parks_by_name)
     elsif params[:national]
-      @parks = Park.getNational(params[:national])
-      json_response(@parks)
+      @parks_by_type = Park.getNational(params[:national])
+      json_response(@parks_by_type)
+    else
+      render status: 406, json: {
+          message: "oops! I see no search options"
+      }
     end
   end
 
+  # def search
+  #   if params[:name] && params[:national]
+  #     render status: 406, json: {
+  #         message: "oops! too many search options, try just one"
+  #     }
+  #   elsif params[:name]
+  #     @parks = Park.search(params[:name])
+  #     json_response(@parks)
+  #   elsif params[:national]
+  #     @parks = Park.getNational(params[:national])
+  #     json_response(@parks)
+  #   end
+  # end
+
   def random
     @park = Park.all.sample(1)
-    json_response(@park)
+    json_response(@park, :success)
   end
 
   def show
     @park = Park.find(params[:id])
-    json_response(@park)
+    json_response(@park, :success)
   end
 
   def create
