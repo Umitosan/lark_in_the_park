@@ -7,4 +7,6 @@ class Park < ApplicationRecord
 
   scope :search, -> (name) { where("name like ?", "%#{name}%")}
 
+  scope :getNational, -> (val) { where(national_park: val) }
+
 end

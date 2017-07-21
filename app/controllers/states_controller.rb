@@ -49,7 +49,7 @@ class StatesController < ApplicationController
   end
 
   def state_params
-    params.permit(:name, :description, :national_park)
+    params.permit(:name)
   end
 
 end

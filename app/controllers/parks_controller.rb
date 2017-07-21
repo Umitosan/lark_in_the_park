@@ -1,13 +1,17 @@
 class ParksController < ApplicationController
 
   def index
-    if params[:name]
-      parkName = params[:name]
-      @parks = Park.search(parkName)
-    else
-      @parks = Park.all
+    if params[:name] && params[:national]
+      render status: 406, json: {
+          message: "oops! too many search options, try just one"
+      }
+    elsif params[:name]
+      @parks = Park.search(params[:name])
+      json_response(@parks)
+    elsif params[:national]
+      @parks = Park.getNational(params[:national])
+      json_response(@parks)
     end
-    json_response(@parks)
   end
 
   def show
@@ -19,7 +23,7 @@ class ParksController < ApplicationController
     @park = Park.create!(park_params)
     render status: 201, json: {
         park: @park,
-        message: "park was created"
+        message: "The park was created"
     }
   end
 
@@ -49,7 +53,7 @@ class ParksController < ApplicationController
   end
 
   def park_params
-    params.permit(:name)
+    params.permit(:name, :description, :national_park)
   end
 
 end
