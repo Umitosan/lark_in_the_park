@@ -11,18 +11,18 @@ class ParksController < ApplicationController
   end
 
   def create
-    @park = Park.create(park_params)
+    @park = Park.create!(park_params)
     json_response(@park)
   end
 
   def update
     @park = Park.find(params[:id])
-    @park.update(park_params)
+    @park.update!(park_params)
   end
 
   def destroy
     @park = Park.find(params[:id])
-    @park.destroy
+    @park.destroy!
   end
 
   private

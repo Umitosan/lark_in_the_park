@@ -11,18 +11,18 @@ class StatesController < ApplicationController
   end
 
   def create
-    @state = State.create(state_params)
+    @state = State.create!(state_params)
     json_response(@state)
   end
 
   def update
     @state = State.find(params[:id])
-    @state.update(state_params)
+    @state.update!(state_params)
   end
 
   def destroy
     @state = State.find(params[:id])
-    @state.destroy
+    @state.destroy!
   end
 
   private
