@@ -12,17 +12,30 @@ class StatesController < ApplicationController
 
   def create
     @state = State.create!(state_params)
-    json_response(@state)
+    render status: 201, json: {
+        state: @state,
+        message: "The state has been created!"
+    }
   end
 
   def update
     @state = State.find(params[:id])
-    @state.update!(state_params)
+    if @state.update!(state_params)
+      render status: 202, json: {
+          state: @state,
+          message: "The state has been updated!"
+      }
+    end
   end
 
   def destroy
     @state = State.find(params[:id])
-    @state.destroy!
+    stateName = @state.name
+    if @state.destroy!
+      render status: 202, json: {
+          message: "The state, #{stateName}, has been delete FOREVER!"
+      }
+    end
   end
 
   private

@@ -58,13 +58,13 @@ class Seed
       someState = State.create!(name: i)
           2.times do |j|
             someState.parks.create!(name: Faker::Hobbit.location,
-                                    description: Faker::Lovecraft.sentences(2),
+                                    description: Faker::HitchhikersGuideToTheGalaxy.quote,
                                     national_park: false
                                     )
           end
           1.times do |j|
             someState.parks.create!(name: Faker::Hobbit.location,
-                                    description: Faker::Lovecraft.sentences(2),
+                                    description: Faker::HitchhikersGuideToTheGalaxy.quote,
                                     national_park: true
                                     )
           end
