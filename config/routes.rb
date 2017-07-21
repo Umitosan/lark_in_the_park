@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :states
   resources :parks
 
+  get '/random_park' => 'parks#random'
+
 end
