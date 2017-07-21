@@ -3,7 +3,7 @@ class StatesController < ApplicationController
   def index
     if params[:name]
       stateName = params[:name]
-      @states = State.search(stateName)
+      @states = State.search(stateName).as_json(include:[:parks], root: true)
     else
       @states = State.all
     end
@@ -11,7 +11,7 @@ class StatesController < ApplicationController
   end
 
   def show
-    @state = State.find(params[:id])
+    @state = State.find(params[:id]).as_json(include:[:parks], root: true)
     json_response(@state)
   end
 

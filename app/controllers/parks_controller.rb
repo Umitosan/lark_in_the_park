@@ -24,20 +24,6 @@ class ParksController < ApplicationController
     end
   end
 
-  # def search
-  #   if params[:name] && params[:national]
-  #     render status: 406, json: {
-  #         message: "oops! too many search options, try just one"
-  #     }
-  #   elsif params[:name]
-  #     @parks = Park.search(params[:name])
-  #     json_response(@parks)
-  #   elsif params[:national]
-  #     @parks = Park.getNational(params[:national])
-  #     json_response(@parks)
-  #   end
-  # end
-
   def random
     @park = Park.all.sample(1)
     json_response(@park, :success)
