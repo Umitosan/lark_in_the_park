@@ -38,17 +38,16 @@ class ParksController < ApplicationController
     @park = Park.create!(park_params)
     render status: 201, json: {
         park: @park,
-        message: "The park was created"
+        message: "The park has been created!"
     }
   end
 
   def update
     @park = Park.find(params[:id])
-    binding.pry
     if @park.update!(park_params)
       render status: 202, json: {
           park: @park,
-          message: "The park has been updated"
+          message: "The park has been updated!"
       }
     end
   end
@@ -58,7 +57,7 @@ class ParksController < ApplicationController
     parkName = @park.name
     if @park.destroy!
       render status: 200, json: {
-          message: "The park, #{parkName}, has been delete FOREVER!"
+          message: "The park, #{parkName}, has been deleted FOREVER!"
       }
     end
   end
