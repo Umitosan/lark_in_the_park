@@ -3,9 +3,9 @@ class StatesController < ApplicationController
   def index
     if params[:name]
       stateName = params[:name]
-      @states = State.search(stateName).as_json(include:[:parks], root: true)
+      @states = State.search(stateName).page(params[:page]).as_json(include:[:parks], root: true)
     else
-      @states = State.all
+      @states = State.all.page(params[:page])
     end
     json_response(@states)
   end
