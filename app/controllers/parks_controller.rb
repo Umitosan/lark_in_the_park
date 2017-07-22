@@ -2,7 +2,7 @@ class ParksController < ApplicationController
 
   def index
     @parks = Park.all.page(params[:page])
-    json_response(@parks, :success)
+    json_response(@parks, 200)
   end
 
   def search
@@ -10,13 +10,13 @@ class ParksController < ApplicationController
       @parks_by_name = Park.search(params[:name])
       @parks_by_type = Park.getNational(params[:national])
       @unique_parks = (@parks_by_name & @parks_by_type)
-      json_response(@unique_parks)
+      json_response(@unique_parks, 202)
     elsif params[:name]
       @parks_by_name = Park.search(params[:name])
-      json_response(@parks_by_name)
+      json_response(@parks_by_name, 202)
     elsif params[:national]
       @parks_by_type = Park.getNational(params[:national])
-      json_response(@parks_by_type)
+      json_response(@parks_by_type, 202)
     else
       render status: 406, json: {
           message: "oops! I see no search options"
@@ -26,12 +26,12 @@ class ParksController < ApplicationController
 
   def random
     @park = Park.all.sample(1)
-    json_response(@park, :success)
+    json_response(@park, 202)
   end
 
   def show
     @park = Park.find(params[:id])
-    json_response(@park, :success)
+    json_response(@park, 202)
   end
 
   def create
@@ -44,7 +44,8 @@ class ParksController < ApplicationController
 
   def update
     @park = Park.find(params[:id])
-    if @park.update(park_params)
+    binding.pry
+    if @park.update!(park_params)
       render status: 202, json: {
           park: @park,
           message: "The park has been updated"
@@ -68,7 +69,7 @@ class ParksController < ApplicationController
   end
 
   def park_params
-    params.permit(:name, :description, :national_park)
+    params.permit(:name, :description, :national_park, :state_id)
   end
 
 end

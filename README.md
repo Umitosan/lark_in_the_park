@@ -20,22 +20,24 @@ This small app provides a simple public API endpoint for looking up state and na
 
 ## API endpoints
 
-| Method | URL | URL Params | Success Response | Error Response |
-|:---------:|-------|--------|
-| | _**STATES PATH**_ |||
-| GET | http://localhost:3000/ | Optional: name=[string] |
-| GET | http://localhost:3000/states | Optional: name=[string] |
-| POST | http://localhost:3000/states | N/A |
-| GET | http://localhost:3000/states/:id | id=[integer] |
-| PUT/PATCH | http://localhost:3000/states/:id | id=[integer] |
-| DELETE | http://localhost:3000/states/:id | id=[integer] |
-| | _**PARKS PATH**_ | |
-| GET | http://localhost:3000/states/:state_id/parks | state_id=[integer] |
-| POST | http://localhost:3000/states/:state_id/parks | state_id=[integer] |
-| GET | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
-| POST | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
-| PUT/PATCH | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
-| DELETE | http://localhost:3000/states/:state_id/parks | state_id=[integer], id=[integer] |
+| Method | URL | URL Params | Success Response | Failure Response |
+|-------|-------|-------|-------|-------|
+|           | _**STATES PATH**_                  | (params are REQUIRED unless stated otherwise) |||
+| GET       | http://localhost:3000/             | Optional: name=[string] | Code: 200 | Code 500 |
+| GET       | http://localhost:3000/states       | Optional: name=[string] | Code: 200 | Code 500 |
+| POST      | http://localhost:3000/states       | name=[string] | Code: 201 | Code: 422|
+| GET       | http://localhost:3000/states/:id   | id=[integer] | Code: 200 | Code: 404 |
+| PUT/PATCH | http://localhost:3000/states/:id   | id=[integer] | Code: 202 | Code: 404 |
+| DELETE    | http://localhost:3000/states/:id   | id=[integer] | Code: 202 | Code: 404 |
+|           | _**PARKS PATH**_                   ||||
+| GET       | http://localhost:3000/parks        | n/a | Code: 200 | Code: 404 |
+| POST      | http://localhost:3000/parks        | name=[string], description=[string], national_park=[string], state_id=[integer] | Code: 202 | Code: 402 |
+| GET       | http://localhost:3000/parks/:id    | id=[integer] | Code: 202 | Code: 404 |
+| PUT/PATCH | http://localhost:3000/parks/:id    | id=[integer] | Code: 202 | Code: 404, Code: 422 |
+| DELETE    | http://localhost:3000/parks/:id    | id=[integer] | Code: 202 | Code: 404 |
+| GET       | http://localhost:3000/parks_search | name=[string], national=[boolean] | Code: 202 | Code: 406 |
+| GET       | http://localhost:3000/random_park  | n/a | Code: 202 | Code 404 |
+|||||||
 
 ## Prerequisites
 

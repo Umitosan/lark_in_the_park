@@ -7,12 +7,12 @@ class StatesController < ApplicationController
     else
       @states = State.all.page(params[:page])
     end
-    json_response(@states)
+    json_response(@states, 200)
   end
 
   def show
     @state = State.find(params[:id]).as_json(include:[:parks], root: true)
-    json_response(@state)
+    json_response(@state, 200)
   end
 
   def create
